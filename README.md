@@ -1,0 +1,1 @@
+# Arquitetura_Programa_Orientada_A_Objetos_2026.2_V
