@@ -8,83 +8,80 @@ package com.mycompany.a03e02;
  *
  * @author unifmsegura
  */
+// Classe Carro contendo os atributos privados, construtores e métodos get/set
 public class Carro {
-    // atributos
-    private String modelo, cor;
-    private int ano, km;
+    // 1. Atributos privados conforme o enunciado
+    private String modelo;
+    private String cor;
+    private int ano;
     private double preco;
-    
-    // métodos
+    private int km;
+
+    // 2. Construtor Padrão (Sem argumentos)
     public Carro() {
     }
-    // construtores
-    
-    // construtor-padrão (construtor não parametrizado)
+
+    // 3. Construtor Parametrizado para inicializar 3 atributos (Modelo, Ano e Preço)
     public Carro(String modelo, int ano, double preco) {
         this.modelo = modelo;
         this.ano = ano;
         this.preco = preco;
     }
-    
-    // construtor parametrizado
-    public Carro(String modelo, String cor, int ano, double preco, 
-                       int km) {
+
+    // 4. Construtor Parametrizado para inicializar TODOS os atributos
+    public Carro(String modelo, String cor, int ano, double preco, int km) {
         this.modelo = modelo;
         this.cor = cor;
         this.ano = ano;
         this.preco = preco;
         this.km = km;
-
     }
 
-    Carro(String civic, String preto, int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    // get
-    public String getModelo(){
+    // Métodos GET (Leitura)
+    public String getModelo() {
         return modelo;
     }
 
-    public String getCor(){
+    public String getCor() {
         return cor;
     }
 
-    public int getAno(){
+    public int getAno() {
         return ano;
     }
 
-    public double getPreco(){
+    public double getPreco() {
         return preco;
     }
 
-    public int getKm(){
+    public int getKm() {
         return km;
     }
 
-    // set 
-    
+    // Métodos SET (Escrita com validações básicas)
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
- 
+
     public void setCor(String cor) {
         this.cor = cor;
     }
-    
-    public void set(int ano) {
+
+    // CORREÇÃO DO SEU CÓDIGO: O método antes se chamava apenas "set"
+    public void setAno(int ano) {
         this.ano = ano;
     }
-    
+
     public void setPreco(double preco) {
-        if(preco < 0 || preco > 900000000){
-           preco = 0;
+        if (preco < 0 || preco > 900000000) {
+            preco = 0;
         }
         this.preco = preco;
     }
 
     public void setKm(int km) {
-        if(km < 0 || km > 900000000){
-           km = 0;
+        if (km < 0 || km > 900000000) {
+            km = 0;
         }
         this.km = km;
     }
