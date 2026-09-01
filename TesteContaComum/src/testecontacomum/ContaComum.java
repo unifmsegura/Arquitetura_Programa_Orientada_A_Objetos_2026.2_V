@@ -8,34 +8,31 @@ package testecontacomum;
  *
  * @author unifmsegura
  */
-public class ContaComum {
+class ContaComum { 
     private int numero, senha; 
-    private Data dataAbertura;
-    private double saldo;
-    private ContaComum conta;
-    
-    public ContaComum(){
-        this.dataAbertura = new Data();
+    private Data dataAbertura; 
+    private double saldo; 
+    // private ContaComum conta; // REMOVIDO: Redundante e circular (uma conta não precisa ter outra conta dentro de si)
+
+    public ContaComum(){ 
+        this.dataAbertura = new Data(); 
     }
-    
-    public ContaComum(int numero, int senha, Data dataAbertura, double saldo){
-        this.numero = numero;
-        this.senha = senha;
-        this.dataAbertura = dataAbertura;
-        this.saldo = saldo;
+
+    public ContaComum(int numero, int senha, Data dataAbertura, double saldo){ 
+        this.numero = numero; 
+        this.senha = senha; 
+        this.dataAbertura = dataAbertura; 
+        this.saldo = saldo; 
     }
-    
-    public void printConta(){
-        System.out.printf("Num=%d, senha=%.s, saldo=%.2f | ", numero, senha, saldo);
-        System.out.println("Data abertura = ");
-        this.dataAbertura.printData();
+
+    public void printConta(){ 
+        // CORRIGIDO: %.s causava erro de execução. Alterado para %d para exibir a senha numérica.
+        // Se preferir ocultar a senha, pode usar "senha=****" no lugar de "senha=%d"
+        System.out.printf("Num=%d, senha=%d, saldo=%.2f | ", numero, senha, saldo); 
+        System.out.println("Data abertura = "); 
+        this.dataAbertura.printData(); 
     }
-    
-    public Data getDataAbertura(){
-        return dataAbertura;
-    }
-    
-    public double getSaldo(){
-        return saldo;
-    }
+
+    public Data getDataAbertura(){ return dataAbertura; }
+    public double getSaldo(){ return saldo; } 
 }
