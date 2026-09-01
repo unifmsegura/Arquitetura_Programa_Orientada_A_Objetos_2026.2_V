@@ -8,34 +8,26 @@ package testecontacomum;
  *
  * @author unifmsegura
  */
-public class Data {
+class Data { 
     private int dia, mes, ano;
-    
-    public Data(){
-        this.dia = 1;
-        this.mes = 1;
-        this.ano = 2026;
+
+    public Data(){ 
+        this.dia = 1; 
+        this.mes = 1; 
+        this.ano = 2026; 
     }
-    
-    public Data(int dia, int mes, int ano){
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
+
+    public Data(int dia, int mes, int ano){ 
+        this.dia = dia; 
+        this.mes = mes; 
+        this.ano = ano; 
     }
-    
-    public int getDia() {
-        return dia;
-    }
-    
-    public int getMes() {
-        return mes;
-    }
-    
-    public int getAno() {
-        return ano;
-    }
-    
-    public void printData(){
-        System.out.printf("%d/%d/%d\n", dia, mes, ano);
-    }
+
+    public int getDia() { return dia; }
+    public int getMes() { return mes; }
+    public int getAno() { return ano; }
+
+    public void printData(){ 
+        System.out.printf("%d/%d/%d\n", dia, mes, ano); 
+    } 
 }
