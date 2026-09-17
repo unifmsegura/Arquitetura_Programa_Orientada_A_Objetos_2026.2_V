@@ -8,34 +8,29 @@ package a05e05;
  *
  * @author unifmsegura
  */
-public class Funcionario extends Pessoa {
-    private Data admissao;
+/**
+ * Subclasse Funcionario que herda de Pessoa e adiciona admissao (Data) e salario.
+ */
+class Funcionario extends Pessoa {
+    private Data admissao; // Composicao (1..1)
     private double salario;
 
-    public Funcionario(Data admissao, double salario, String nome, long cpf, Data nascimento) {
+    public Funcionario(String nome, long cpf, Data nascimento, Data admissao, double salario) {
         super(nome, cpf, nascimento);
         this.admissao = admissao;
         this.salario = salario;
     }
 
-    public Data getAdmissao() {
-        return admissao;
-    }
+    public Data getAdmissao() { return admissao; }
+    public void setAdmissao(Data admissao) { this.admissao = admissao; }
 
-    public void setAdmissao(Data admissao) {
-        this.admissao = admissao;
-    }
+    public double getSalario() { return salario; }
+    public void setSalario(double salario) { this.salario = salario; }
 
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-    
     @Override
     public String toString() {
-        return String.format("%s | Admissao: %s | Salario: R$ %.2f", super.toString(), admissao, salario);
+        return String.format("%s | Admissão: %s | Salário: R$ %.2f", 
+                super.toString(), admissao, salario);
     }
 }
+
