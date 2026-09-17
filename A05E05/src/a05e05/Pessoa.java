@@ -8,10 +8,13 @@ package a05e05;
  *
  * @author unifmsegura
  */
-public class Pessoa {
+/**
+ * Superclasse Pessoa contendo atributos nome, cpf e a composicao com Data (nascimento).
+ */
+class Pessoa {
     private String nome;
     private long cpf;
-    private Data nascimento;
+    private Data nascimento; // Composicao (1..1)
 
     public Pessoa(String nome, long cpf, Data nascimento) {
         this.nome = nome;
@@ -19,30 +22,15 @@ public class Pessoa {
         this.nascimento = nascimento;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public long getCpf() { return cpf; }
+    public void setCpf(long cpf) { this.cpf = cpf; }
 
-    public long getCpf() {
-        return cpf;
-    }
+    public Data getNascimento() { return nascimento; }
+    public void setNascimento(Data nascimento) { this.nascimento = nascimento; }
 
-    public void setCpf(long cpf) {
-        this.cpf = cpf;
-    }
-
-    public Data getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(Data nascimento) {
-        this.nascimento = nascimento;
-    }
-    
     @Override
     public String toString() {
         return String.format("Nome: %s | CPF: %d | Nascimento: %s", nome, cpf, nascimento);
