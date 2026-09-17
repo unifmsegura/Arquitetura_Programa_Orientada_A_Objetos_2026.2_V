@@ -8,35 +8,30 @@ package a05e05;
  *
  * @author unifmsegura
  */
-public class Gerente extends Funcionario {
+/**
+ * Subclasse Gerente que herda de Funcionario e adiciona departamento e promocaoGerente (Data).
+ */
+class Gerente extends Funcionario {
     private int departamento;
-    private Data promocaoGerente;
+    private Data promocaoGerente; // Composicao (1..1)
 
-    public Gerente(int departamento, Data promocaoGerente, Data admissao, double salario, String nome, long cpf, Data nascimento) {
-        super(admissao, salario, nome, cpf, nascimento);
+    public Gerente(String nome, long cpf, Data nascimento, Data admissao, double salario, 
+                   int departamento, Data promocaoGerente) {
+        super(nome, cpf, nascimento, admissao, salario);
         this.departamento = departamento;
         this.promocaoGerente = promocaoGerente;
     }
 
-    public int getDepartamento() {
-        return departamento;
-    }
+    public int getDepartamento() { return departamento; }
+    public void setDepartamento(int departamento) { this.departamento = departamento; }
 
-    public void setDepartamento(int departamento) {
-        this.departamento = departamento;
-    }
+    public Data getPromocaoGerente() { return promocaoGerente; }
+    public void setPromocaoGerente(Data promocaoGerente) { this.promocaoGerente = promocaoGerente; }
 
-    public Data getPromocaoGerente() {
-        return promocaoGerente;
-    }
-
-    public void setPromocaoGerente(Data promocaoGerente) {
-        this.promocaoGerente = promocaoGerente;
-    }
-    
     @Override
     public String toString() {
-        return String.format("%s | Depto: %d | Promocao a Gerente: %s",
+        return String.format("%s | Depto: %d | Promoção a Gerente: %s", 
                 super.toString(), departamento, promocaoGerente);
     }
 }
+
