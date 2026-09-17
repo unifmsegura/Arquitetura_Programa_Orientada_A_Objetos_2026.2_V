@@ -8,15 +8,16 @@ package com.mycompany.a06e02;
  *
  * @author unifmsegura
  */
-abstract class Circulo extends Forma {
+// Subclasse Circulo
+class Circulo extends Forma {
     private double raio;
 
-    public Circulo(double raio, String nome, String cor) {
-        super("Circulo", cor);
+    public Circulo(double raio, String cor) {
+        super("Círculo", cor);
         this.raio = raio;
     }
- 
-     public Circulo(double raio) {
+
+    public Circulo(double raio) {
         this(raio, "Vermelho");
     }
 
@@ -27,14 +28,14 @@ abstract class Circulo extends Forma {
     public void setRaio(double raio) {
         this.raio = raio;
     }
-    
-     @Override
-     public double calcularArea() {
-         return Math.PI * Math.pow(raio, 2);
-     }
-     
-     @Override
-     public double calcularPerimetro() {
-         return 2 * Math.PI * raio;
-     }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * Math.pow(raio, 2);
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        return 2 * Math.PI * raio;
+    }
 }
