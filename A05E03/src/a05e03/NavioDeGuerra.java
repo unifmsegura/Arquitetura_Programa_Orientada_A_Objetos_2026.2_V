@@ -8,12 +8,13 @@ package a05e03;
  *
  * @author unifmsegura
  */
-public class NavioDeGuerra extends Navio {
+// Subclasse NavioDeGuerra
+class NavioDeGuerra extends Navio {
     protected double blindagem;
     protected double ataque;
 
-    public NavioDeGuerra(double blindagem, double ataque, int numTripulantes) {
-        super(numTripulantes);
+    public NavioDeGuerra(String nome, int numTripulantes, double blindagem, double ataque) {
+        super(nome, numTripulantes);
         this.blindagem = blindagem;
         this.ataque = ataque;
     }
@@ -33,11 +34,11 @@ public class NavioDeGuerra extends Navio {
     public void setAtaque(double ataque) {
         this.ataque = ataque;
     }
-    
+
     public void poderDeFogo() {
         System.out.printf("Poder de Fogo (Ataque Base): %.2f\n", ataque);
     }
-    
+
     public void exibirArmas() {
         exibirInfoGeral();
         System.out.printf("Blindagem: %.2f | ", blindagem);
