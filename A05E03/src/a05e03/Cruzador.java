@@ -8,11 +8,12 @@ package a05e03;
  *
  * @author unifmsegura
  */
-public class Cruzador extends NavioDeGuerra {
+// Subclasse Cruzador (herda de NavioDeGuerra)
+class Cruzador extends NavioDeGuerra {
     private int numCanhoes;
 
-    public Cruzador(int numCanhoes, double blindagem, double ataque, int numTripulantes) {
-        super(blindagem, ataque, numTripulantes);
+    public Cruzador(String nome, int numTripulantes, double blindagem, double ataque, int numCanhoes) {
+        super(nome, numTripulantes, blindagem, ataque);
         this.numCanhoes = numCanhoes;
     }
 
@@ -23,10 +24,11 @@ public class Cruzador extends NavioDeGuerra {
     public void setNumCanhoes(int numCanhoes) {
         this.numCanhoes = numCanhoes;
     }
-    
+
     @Override
     public void poderDeFogo() {
+        // Cálculo conforme especificação: ataque * sqrt(numCanhoes)
         double poderCalculado = ataque * Math.sqrt(numCanhoes);
-        System.out.printf("Poder de Fogo (Cruzado - %d canhoes): %.2f\n", numCanhoes, poderCalculado);
+        System.out.printf("Poder de Fogo (Cruzador - %d canhões): %.2f\n", numCanhoes, poderCalculado);
     }
 }
