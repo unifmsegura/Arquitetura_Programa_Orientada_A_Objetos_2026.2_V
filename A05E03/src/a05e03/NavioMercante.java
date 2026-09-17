@@ -8,12 +8,13 @@ package a05e03;
  *
  * @author unifmsegura
  */
-public class NavioMercante extends Navio {
+// Subclasse NavioMercante
+class NavioMercante extends Navio {
     private double capacidadeCarga;
     private double carga;
 
-    public NavioMercante(double capacidadeCarga, double carga, int numTripulantes) {
-        super(numTripulantes);
+    public NavioMercante(String nome, int numTripulantes, double capacidadeCarga, double carga) {
+        super(nome, numTripulantes);
         this.capacidadeCarga = capacidadeCarga;
         this.carga = carga;
     }
@@ -33,10 +34,11 @@ public class NavioMercante extends Navio {
     public void setCarga(double carga) {
         this.carga = carga;
     }
-    
+
     public void carregamento() {
         exibirInfoGeral();
         double ocupacao = (capacidadeCarga > 0) ? (carga / capacidadeCarga) * 100 : 0;
-        System.out.printf("Capacidade: %.2f t | Carga Atual: %.2f t | Ocupacao: %.2f%%\n", capacidadeCarga, carga, ocupacao);
+        System.out.printf("Capacidade: %.2f t | Carga Atual: %.2f t | Ocupação: %.2f%%\n",
+                capacidadeCarga, carga, ocupacao);
     }
 }
