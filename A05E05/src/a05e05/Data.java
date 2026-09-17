@@ -3,13 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package a05e05;
+import java.util.ArrayList;
 
 /**
  *
  * @author unifmsegura
  */
-public class Data {
-    private int dia, mes, ano;
+
+/**
+ * Classe Data representando uma data (dia, mes, ano).
+ * Utilizada para compor as datas de nascimento, admissao e promocao.
+ */
+class Data {
+    private int dia;
+    private int mes;
+    private int ano;
 
     public Data(int dia, int mes, int ano) {
         this.dia = dia;
@@ -17,30 +25,15 @@ public class Data {
         this.ano = ano;
     }
 
-    public int getDia() {
-        return dia;
-    }
+    public int getDia() { return dia; }
+    public void setDia(int dia) { this.dia = dia; }
 
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
+    public int getMes() { return mes; }
+    public void setMes(int mes) { this.mes = mes; }
 
-    public int getMes() {
-        return mes;
-    }
+    public int getAno() { return ano; }
+    public void setAno(int ano) { this.ano = ano; }
 
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-    
     @Override
     public String toString() {
         return String.format("%02d/%02d/%04d", dia, mes, ano);
