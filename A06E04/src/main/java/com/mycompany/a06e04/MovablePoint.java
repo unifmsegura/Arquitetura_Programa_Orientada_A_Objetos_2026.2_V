@@ -8,38 +8,44 @@ package com.mycompany.a06e04;
  *
  * @author unifmsegura
  */
-public class MovablePoint {
-    int x, y, xSpeed, ySpeed;
-    
+class MovablePoint implements Movable {
+    // Atributos package-private (modificador '~' na UML - sem palavra-chave de acesso no Java)
+    int x;
+    int y;
+    int xSpeed;
+    int ySpeed;
+
+    // Construtor parametrizado
     public MovablePoint(int x, int y, int xSpeed, int ySpeed) {
         this.x = x;
         this.y = y;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
     }
-    
+
     @Override
     public String toString() {
         return String.format("(%d, %d), velocidade=(%d, %d)", x, y, xSpeed, ySpeed);
     }
-    
+
     @Override
     public void moveUp() {
-        y -= ySpeed;
+        y -= ySpeed; // No sistema de coordenadas de tela, mover para cima reduz o Y (ou Y += ySpeed no cartesiano)
     }
-    
+
     @Override
     public void moveDown() {
         y += ySpeed;
     }
-    
+
     @Override
     public void moveLeft() {
         x -= xSpeed;
     }
-    
+
     @Override
     public void moveRight() {
         x += xSpeed;
     }
 }
+
