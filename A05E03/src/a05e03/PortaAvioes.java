@@ -8,11 +8,11 @@ package a05e03;
  *
  * @author unifmsegura
  */
-public class PortaAvioes extends NavioDeGuerra {
+class PortaAvioes extends NavioDeGuerra {
     private int numAvioes;
 
-    public PortaAvioes(int numAvioes, double blindagem, double ataque, int numTripulantes) {
-        super(blindagem, ataque, numTripulantes);
+    public PortaAvioes(String nome, int numTripulantes, double blindagem, double ataque, int numAvioes) {
+        super(nome, numTripulantes, blindagem, ataque);
         this.numAvioes = numAvioes;
     }
 
@@ -23,10 +23,11 @@ public class PortaAvioes extends NavioDeGuerra {
     public void setNumAvioes(int numAvioes) {
         this.numAvioes = numAvioes;
     }
-    
+
     @Override
     public void poderDeFogo() {
+        // Cálculo conforme especificação: ataque * numAvioes * 2
         double poderCalculado = ataque * numAvioes * 2;
-        System.out.printf("Poder de Fogo (PortaAvioes - %d avioes): %.2f\n", numAvioes, poderCalculado);
+        System.out.printf("Poder de Fogo (Porta-Aviões - %d aviões): %.2f\n", numAvioes, poderCalculado);
     }
 }
