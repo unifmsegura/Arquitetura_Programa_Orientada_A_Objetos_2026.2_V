@@ -8,19 +8,21 @@ package com.mycompany.a06e02;
  *
  * @author unifmsegura
  */
-abstract class Retangulo extends Forma {
-    private double largura, altura;
+// Subclasse Retangulo
+class Retangulo extends Forma {
+    private double largura;
+    private double altura;
 
-    public Retangulo(double largura, double altura, String nome, String cor) {
+    public Retangulo(String nome, double largura, double altura, String cor) {
         super(nome, cor);
         this.largura = largura;
         this.altura = altura;
     }
-    
+
     public Retangulo(double largura, double altura, String cor) {
-        this("Retangulo", largura, altura, cor);
-    }    
-    
+        this("Retângulo", largura, altura, cor);
+    }
+
     public Retangulo(double largura, double altura) {
         this(largura, altura, "Verde");
     }
@@ -40,12 +42,12 @@ abstract class Retangulo extends Forma {
     public void setAltura(double altura) {
         this.altura = altura;
     }
-    
+
     @Override
     public double calcularArea() {
         return largura * altura;
     }
-    
+
     @Override
     public double calcularPerimetro() {
         return 2 * (largura + altura);
