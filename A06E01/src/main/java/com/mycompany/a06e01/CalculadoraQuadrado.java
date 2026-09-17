@@ -9,12 +9,25 @@ import java.util.Scanner;
  *
  * @author unifmsegura
  */
-public class CalculadoraQuadrado {
-    public static int square (int numero) {
+class CalculadoraQuadrado {
+
+    /**
+     * Calcula o quadrado de um número inteiro.
+     * 
+     * @param numero O número inteiro a ser elevado ao quadrado
+     * @return O quadrado do número (int)
+     */
+    public static int square(int numero) {
         return numero * numero;
     }
-    
-    public static double square (double numero) {
+
+    /**
+     * Sobrecarga do método square para calcular o quadrado de um número de ponto flutuante (double).
+     * 
+     * @param numero O número double a ser elevado ao quadrado
+     * @return O quadrado do número (double)
+     */
+    public static double square(double numero) {
         return numero * numero;
     }
 }
