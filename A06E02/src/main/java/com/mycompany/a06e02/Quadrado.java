@@ -8,14 +8,15 @@ package com.mycompany.a06e02;
  *
  * @author unifmsegura
  */
-abstract class Quadrado extends Retangulo {
+// Subclasse Quadrado (herda de Retangulo aproveitando a relação especial de retângulo)
+class Quadrado extends Retangulo {
     private double lado;
 
     public Quadrado(double lado, String cor) {
-        super("Quadrado", lado, lado, cor)
+        super("Quadrado", lado, lado, cor);
         this.lado = lado;
     }
-    
+
     public Quadrado(double lado) {
         this(lado, "Amarelo");
     }
@@ -28,5 +29,5 @@ abstract class Quadrado extends Retangulo {
         this.lado = lado;
         setLargura(lado);
         setAltura(lado);
-    } 
+    }
 }
