@@ -3,21 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package a05e03;
+import java.util.ArrayList;
 
 /**
  *
  * @author unifmsegura
  */
-public class Navio {
+// Superclasse Navio
+class Navio {
     protected String nome;
     protected int numTripulantes;
 
     public Navio() {
-        this.nome = "Nao informado.";
+        this.nome = "Não informado";
         this.numTripulantes = 0;
     }
-    
-    public Navio(int numTripulantes) {
+
+    public Navio(String nome, int numTripulantes) {
         this.nome = nome;
         this.numTripulantes = numTripulantes;
     }
@@ -37,7 +39,7 @@ public class Navio {
     public void setNumTripulantes(int numTripulantes) {
         this.numTripulantes = numTripulantes;
     }
-    
+
     public void exibirInfoGeral() {
         System.out.printf("Navio: %s | Tripulantes: %d\n", nome, numTripulantes);
     }
