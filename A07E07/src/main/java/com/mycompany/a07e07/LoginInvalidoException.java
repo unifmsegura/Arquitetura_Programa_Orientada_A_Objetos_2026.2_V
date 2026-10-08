@@ -4,10 +4,14 @@
  */
 package com.mycompany.a07e07;
 
+import java.util.Scanner;
 /**
  *
  * @author unifmsegura
  */
-public class LoginInvalidoException {
-    
+
+class LoginInvalidoException extends Exception {
+    public LoginInvalidoException(String mensagem) {
+        super(mensagem);
+    }
 }
