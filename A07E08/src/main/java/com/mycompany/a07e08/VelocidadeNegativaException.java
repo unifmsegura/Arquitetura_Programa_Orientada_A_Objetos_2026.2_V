@@ -8,6 +8,8 @@ package com.mycompany.a07e08;
  *
  * @author unifmsegura
  */
-public class VelocidadeNegativaException {
-    
+class VelocidadeNegativaException extends Exception {
+    public VelocidadeNegativaException(String mensagem) {
+        super(mensagem);
+    }
 }
