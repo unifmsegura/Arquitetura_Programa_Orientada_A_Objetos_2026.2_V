@@ -1,0 +1,576 @@
+Exercício 01 da Aula 07 (Tratamento de Exceções)
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ExcecaoRetomadaExercicio {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean entradaValida = false;
+        int numero = 0;
+
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 01 - AULA 07: COMPORTAMENTO DE RETOMADA");
+        System.out.println("==================================================");
+
+        // Laço 'while' que repete até que nenhuma exceção seja lançada
+        while (!entradaValida) {
+            try {
+                System.out.print("\nDigite um número inteiro válido: ");
+                
+                numero = scanner.nextInt();
+                
+                if (numero < 0) {
+                    throw new IllegalArgumentException("Número não pode ser negativo!");
+                }
+
+                // Se executado sem exceções, encerra o laço
+                entradaValida = true;
+                
+            } catch (InputMismatchException e) {
+                System.out.println("❌ Erro: Entrada inválida! Digite apenas números inteiros.");
+                scanner.nextLine(); // Limpa o buffer do Scanner
+            } catch (IllegalArgumentException e) {
+                System.out.println("❌ Erro: " + e.getMessage());
+            }
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("✅ Sucesso! Número lido sem exceções: " + numero);
+        System.out.println("==================================================");
+
+        scanner.close();
+    }
+}
+
+Exercício 02 da Aula 07 (Tratamento de Exceções)
+
+class TextoExemplo {
+    private String conteudo;
+
+    public TextoExemplo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public void exibirMensagem() {
+        System.out.println("Conteúdo do texto: " + conteudo.toUpperCase());
+    }
+}
+
+public class ExcecaoNullPointerExercicio {
+
+    public static void main(String[] args) {
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 02 - AULA 07: CAPTURA DE NullPointerException");
+        System.out.println("==================================================\n");
+
+        // 1. Declaração do objeto inicializado como 'null'
+        TextoExemplo meuObjeto = null;
+
+        System.out.println("Tentando chamar o método 'exibirMensagem()' em um objeto nulo...\n");
+
+        // 2. Bloco try-catch para capturar a exceção ao acessar objeto nulo
+        try {
+            // Esta linha provocará uma NullPointerException pois 'meuObjeto' é null
+            meuObjeto.exibirMensagem();
+
+            System.out.println("Esta linha NÃO será executada pois a exceção ocorre antes.");
+
+        } catch (NullPointerException e) {
+            // 3. Tratamento elegante da exceção capturada
+            System.out.println("❌ EXCEÇÃO CAPTURADA COM SUCESSO!");
+            System.out.println("Tipo da exceção: " + e.getClass().getName());
+            System.out.println("Detalhe do erro: Tentativa de invocar um método em uma referência 'null'.");
+            System.out.println("\n💡 Como corrigir: O objeto precisa ser instanciado com 'new' antes de ser utilizado.");
+        } finally {
+            System.out.println("\n[Bloco finally]: Execução do tratamento finalizada com segurança.");
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("  PROGRAMA FINALIZADO SEM ERROS BRUTOS!");
+        System.out.println("==================================================");
+    }
+}
+
+Exercício 03 da Aula 07 (Tratamento de Exceções)
+
+public class ExcecaoLancamentoExercicio {
+
+    public static void main(String[] args) {
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 03 - AULA 07: LANÇAMENTO DE EXCEÇÃO");
+        System.out.println("==================================================\n");
+
+        try {
+            System.out.println("Iniciando o bloco 'try'...");
+            
+            // 1. Lança manualmente um objeto Exception com um argumento String
+            throw new Exception("Mensagem de erro customizada enviada ao construtor da Exception!");
+
+        } catch (Exception e) {
+            // 2. Captura a exceção e exibe o argumento String impresso
+            System.out.println("❌ Exceção capturada no bloco 'catch':");
+            System.out.println("Mensagem recuperada via e.getMessage(): " + e.getMessage());
+
+        } finally {
+            // 3. Cláusula finally que sempre é executada
+            System.out.println("\n[Bloco finally]: Este bloco é SEMPRE executado ao final!");
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("  PROGRAMA FINALIZADO COM SUCESSO!");
+        System.out.println("==================================================");
+    }
+}
+
+
+Exercício 04 da Aula 07 (Tratamento de Exceções)
+
+class MinhaExcecaoPersonalizada extends Exception {
+    private String mensagemArmazenada;
+
+    // Construtor que recebe um argumento String e o armazena
+    public MinhaExcecaoPersonalizada(String mensagem) {
+        super(mensagem);
+        this.mensagemArmazenada = mensagem;
+    }
+
+    // Método exclusivo para exibir a mensagem armazenada
+    public void exibirMensagemPersonalizada() {
+        System.out.println("📢 Mensagem armazenada na exceção: " + mensagemArmazenada);
+    }
+}
+
+public class ExcecaoPersonalizadaExercicio {
+
+    public static void main(String[] args) {
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 04 - AULA 07: EXCEÇÃO PERSONALIZADA");
+        System.out.println("==================================================\n");
+
+        // 2. Cláusula try-catch exercitando a nova exceção
+        try {
+            System.out.println("Entrando no bloco 'try'...");
+            
+            boolean ocorreuErro = true;
+            if (ocorreuErro) {
+                // Lançamento manual da exceção customizada
+                throw new MinhaExcecaoPersonalizada("Falha crítica personalizada no sistema!");
+            }
+
+            System.out.println("Esta linha não será executada.");
+
+        } catch (MinhaExcecaoPersonalizada e) {
+            // 3. Captura e invocação do método específico da nova exceção
+            System.out.println("❌ Exceção do tipo 'MinhaExcecaoPersonalizada' capturada!");
+            e.exibirMensagemPersonalizada();
+
+        } finally {
+            System.out.println("\n[Bloco finally]: Finalizando o teste da exceção personalizada.");
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("  PROGRAMA FINALIZADO COM SUCESSO!");
+        System.out.println("==================================================");
+    }
+}
+
+
+Exercício 05 da Aula 07 (Tratamento de Exceções)
+
+// 1. Três novos tipos de exceções personalizadas herdando de Exception
+class ExcecaoUm extends Exception {
+    public ExcecaoUm(String mensagem) {
+        super(mensagem);
+    }
+}
+
+class ExcecaoDois extends Exception {
+    public ExcecaoDois(String mensagem) {
+        super(mensagem);
+    }
+}
+
+class ExcecaoTres extends Exception {
+    public ExcecaoTres(String mensagem) {
+        super(mensagem);
+    }
+}
+
+// 2. Classe com o método que declara e lança as três exceções
+class GeradorExcecoes {
+
+    // O método declara na cláusula 'throws' a possibilidade de lançar qualquer um dos três tipos
+    public void testarLancamento(int opcao) throws ExcecaoUm, ExcecaoDois, ExcecaoTres {
+        switch (opcao) {
+            case 1:
+                throw new ExcecaoUm("Primeiro tipo de exceção (ExcecaoUm) disparado!");
+            case 2:
+                throw new ExcecaoDois("Segundo tipo de exceção (ExcecaoDois) disparado!");
+            case 3:
+                throw new ExcecaoTres("Terceiro tipo de exceção (ExcecaoTres) disparado!");
+            default:
+                System.out.println("Nenhuma exceção lançada para a opção " + opcao);
+        }
+    }
+}
+
+public class ExcecaoMultiplaExercicio {
+
+    public static void main(String[] args) {
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 05 - AULA 07: MÚLTIPLAS EXCEÇÕES");
+        System.out.println("==================================================\n");
+
+        GeradorExcecoes gerador = new GeradorExcecoes();
+
+        // 3. Invocação do método e captura usando uma única cláusula catch (Multi-catch)
+        for (int opcao = 1; opcao <= 3; opcao++) {
+            System.out.println("--- Teste " + opcao + " ---");
+            try {
+                gerador.testarLancamento(opcao);
+            } catch (ExcecaoUm | ExcecaoDois | ExcecaoTres e) {
+                // Única cláusula catch tratando os 3 tipos com o operador '|'
+                System.out.println("❌ Exceção capturada na única cláusula catch!");
+                System.out.println("Classe da exceção: " + e.getClass().getSimpleName());
+                System.out.println("Mensagem: " + e.getMessage() + "\n");
+            }
+        }
+
+        System.out.println("==================================================");
+        System.out.println("  PROGRAMA FINALIZADO COM SUCESSO!");
+        System.out.println("==================================================");
+    }
+}
+
+
+Exercício 06 da Aula 07 (Tratamento de Exceções)
+
+import java.util.Scanner;
+
+// 1. Classe de exceção personalizada para CPF inválido
+class CpfInvalidoException extends Exception {
+    public CpfInvalidoException(String mensagem) {
+        super(mensagem);
+    }
+}
+
+// 2. Classe Pessoa com construtor de 4 parâmetros e validação
+class Pessoa {
+    private String nome;
+    private String sobrenome;
+    private int idade;
+    private String cpf;
+
+    public Pessoa(String nome, String sobrenome, int idade, String cpf) throws CpfInvalidoException {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.idade = idade;
+        setCpf(cpf); // Valida o CPF ao instanciar
+    }
+
+    public String getNome() { return nome; }
+    public String getSobrenome() { return sobrenome; }
+    public int getIdade() { return idade; }
+    public String getCpf() { return cpf; }
+
+    public void setCpf(String cpf) throws CpfInvalidoException {
+        // Verifica se o CPF contém pontos ou hífens
+        if (cpf.contains(".") || cpf.contains("-")) {
+            throw new CpfInvalidoException("CPF contém caracteres especiais (ponto ou hífen)! Digite apenas números.");
+        }
+        this.cpf = cpf;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Pessoa: %s %s | Idade: %d | CPF: %s", nome, sobrenome, idade, cpf);
+    }
+}
+
+// 3. Classe principal executável
+public class ExcecaoCpfExercicio {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 06 - AULA 07: VALIDAÇÃO DE CPF");
+        System.out.println("==================================================\n");
+
+        System.out.print("Digite o nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("Digite o sobrenome: ");
+        String sobrenome = scanner.nextLine();
+
+        System.out.print("Digite a idade: ");
+        int idade = scanner.nextInt();
+        scanner.nextLine(); // Limpa o buffer do teclado
+
+        Pessoa pessoa = null;
+        boolean cpfValido = false;
+
+        // Repete a leitura do CPF em caso de exceção (Retomada)
+        while (!cpfValido) {
+            try {
+                System.out.print("Digite o CPF (apenas números): ");
+                String cpf = scanner.nextLine();
+
+                // Tenta instanciar a pessoa (valida o CPF no construtor)
+                pessoa = new Pessoa(nome, sobrenome, idade, cpf);
+                cpfValido = true; // Se não lançou exceção, marca como válido
+
+            } catch (CpfInvalidoException e) {
+                System.out.println("❌ ERRO: " + e.getMessage());
+                System.out.println("Por favor, tente digitar o CPF novamente.\n");
+            }
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("✅ PESSOA CADASTRADA COM SUCESSO!");
+        System.out.println(pessoa);
+        System.out.println("==================================================");
+
+        scanner.close();
+    }
+}
+
+
+Exercício 07 da Aula 07 (Tratamento de Exceções)
+
+import java.util.Scanner;
+
+// 1. Classe de exceção personalizada para falha de autenticação
+class LoginInvalidoException extends Exception {
+    public LoginInvalidoException(String mensagem) {
+        super(mensagem);
+    }
+}
+
+// 2. Classe Login com atributos, construtor, getters/setters e método logar
+class Login {
+    private String usuario;
+    private String senha;
+
+    // Construtor parametrizado
+    public Login(String usuario, String senha) {
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+
+    // Getters e Setters
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    // Método logar que compara usuário e senha e lança exceção se incorretos
+    public boolean logar(String user, String password) throws LoginInvalidoException {
+        if (this.usuario.equals(user) && this.senha.equals(password)) {
+            System.out.println("✅ Login realizado com sucesso! Bem-vindo, " + user + "!");
+            return true;
+        } else {
+            // Lança exceção caso as credenciais estejam incorretas
+            throw new LoginInvalidoException("Usuário ou senha incorretos! Acesso negado.");
+        }
+    }
+}
+
+// 3. Classe principal para testar o sistema de login
+public class ExcecaoLoginExercicio {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 07 - AULA 07: AUTENTICAÇÃO E LOGIN");
+        System.out.println("==================================================\n");
+
+        // Instancia o objeto Login com credenciais cadastradas no sistema
+        Login sistemaLogin = new Login("admin", "senha123");
+
+        boolean autenticado = false;
+
+        // Loop de tentativas de login tratando exceção
+        while (!autenticado) {
+            System.out.print("Usuário: ");
+            String userDigitado = scanner.nextLine();
+
+            System.out.print("Senha: ");
+            String senhaDigitada = scanner.nextLine();
+
+            try {
+                // Tenta realizar o login
+                autenticado = sistemaLogin.logar(userDigitado, senhaDigitada);
+
+            } catch (LoginInvalidoException e) {
+                // Captura a exceção e exibe a mensagem de erro
+                System.out.println("❌ ERRO: " + e.getMessage());
+                System.out.println("Por favor, tente novamente.\n");
+            }
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("  SISTEMA ACESSADO COM SUCESSO!");
+        System.out.println("==================================================");
+
+        scanner.close();
+    }
+}
+
+
+Exercício 08 da Aula 07 (Tratamento de Exceções)
+
+// 1. Classes de exceções personalizadas para controle de velocidade
+class VelocidadeExcedidaException extends Exception {
+    public VelocidadeExcedidaException(String mensagem) {
+        super(mensagem);
+    }
+}
+
+class VelocidadeNegativaException extends Exception {
+    public VelocidadeNegativaException(String mensagem) {
+        super(mensagem);
+    }
+}
+
+// 2. Classe Carro com atributos, construtores, getters/setters e métodos acelerar/frear
+class Carro {
+    private double velocidade;
+    private double velocidadeMaxima;
+
+    // Construtor padrão
+    public Carro() {
+        this.velocidade = 0.0;
+        this.velocidadeMaxima = 180.0;
+    }
+
+    // Construtor parametrizado
+    public Carro(double velocidade, double velocidadeMaxima) throws VelocidadeExcedidaException, VelocidadeNegativaException {
+        if (velocidade < 0) {
+            throw new VelocidadeNegativaException("Velocidade inicial não pode ser menor que zero!");
+        }
+        if (velocidade > velocidadeMaxima) {
+            throw new VelocidadeExcedidaException("Velocidade inicial não pode ultrapassar a velocidade máxima!");
+        }
+        this.velocidade = velocidade;
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
+
+    // Getters e Setters
+    public double getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(double velocidade) throws VelocidadeExcedidaException, VelocidadeNegativaException {
+        if (velocidade < 0) {
+            throw new VelocidadeNegativaException("A velocidade não pode ser menor que zero!");
+        }
+        if (velocidade > velocidadeMaxima) {
+            throw new VelocidadeExcedidaException("A velocidade não pode exceder o limite máximo de " + velocidadeMaxima + " km/h!");
+        }
+        this.velocidade = velocidade;
+    }
+
+    public double getVelocidadeMaxima() {
+        return velocidadeMaxima;
+    }
+
+    public void setVelocidadeMaxima(double velocidadeMaxima) {
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
+
+    // Método para acelerar aumentando a velocidade
+    public void acelerar(double valor) throws VelocidadeExcedidaException {
+        double novaVelocidade = this.velocidade + valor;
+        if (novaVelocidade > velocidadeMaxima) {
+            throw new VelocidadeExcedidaException("Atenção! Acelerar +" + valor + " km/h ultrapassaria o limite máximo de " 
+                    + velocidadeMaxima + " km/h! Velocidade atual: " + velocidade + " km/h.");
+        }
+        this.velocidade = novaVelocidade;
+        System.out.println("🏎️ Acelerando +" + valor + " km/h. Velocidade atual: " + velocidade + " km/h.");
+    }
+
+    // Método para frear diminuindo a velocidade
+    public void frear(double valor) throws VelocidadeNegativaException {
+        double novaVelocidade = this.velocidade - valor;
+        if (novaVelocidade < 0) {
+            throw new VelocidadeNegativaException("Atenção! Frear -" + valor + " km/h deixaria a velocidade menor que zero! Velocidade atual: " 
+                    + velocidade + " km/h.");
+        }
+        this.velocidade = novaVelocidade;
+        System.out.println("🛑 Freando -" + valor + " km/h. Velocidade atual: " + velocidade + " km/h.");
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Carro [Velocidade Atual: %.1f km/h | Velocidade Máxima: %.1f km/h]", velocidade, velocidadeMaxima);
+    }
+}
+
+// 3. Classe principal para testar a aplicação
+public class CarroExercicioAula07 {
+
+    public static void main(String[] args) {
+        System.out.println("==================================================");
+        System.out.println("  EXERCÍCIO 08 - AULA 07: CONTROLE DE VELOCIDADE");
+        System.out.println("==================================================\n");
+
+        try {
+            // Instanciação de um carro com velocidade inicial 50 km/h e limite de 160 km/h
+            Carro meuCarro = new Carro(50.0, 160.0);
+            System.out.println("Estado inicial do veículo: " + meuCarro + "\n");
+
+            // Teste 1: Aceleração normal
+            System.out.println("--- TESTE 1: Aceleração Segura ---");
+            meuCarro.acelerar(40.0); // Vai para 90 km/h
+            meuCarro.acelerar(50.0); // Vai para 140 km/h
+            System.out.println();
+
+            // Teste 2: Excesso de velocidade (Ultrapassar velocidadeMaxima)
+            System.out.println("--- TESTE 2: Tentativa de Excesso de Velocidade ---");
+            try {
+                meuCarro.acelerar(30.0); // Tentaria ir para 170 km/h (Limite: 160 km/h)
+            } catch (VelocidadeExcedidaException e) {
+                System.out.println("❌ EXCEÇÃO CAPTURADA: " + e.getMessage());
+            }
+            System.out.println();
+
+            // Teste 3: Frenagem normal
+            System.out.println("--- TESTE 3: Frenagem Segura ---");
+            meuCarro.frear(100.0); // Vai para 40 km/h
+            System.out.println();
+
+            // Teste 4: Velocidade negativa (Frear mais do que o permitted)
+            System.out.println("--- TESTE 4: Tentativa de Velocidade Negativa ---");
+            try {
+                meuCarro.frear(60.0); // Tentaria ir para -20 km/h
+            } catch (VelocidadeNegativaException e) {
+                System.out.println("❌ EXCEÇÃO CAPTURADA: " + e.getMessage());
+            }
+
+            System.out.println("\nEstado final do veículo: " + meuCarro);
+
+        } catch (VelocidadeExcedidaException | VelocidadeNegativaException e) {
+            System.out.println("❌ Erro ao inicializar o veículo: " + e.getMessage());
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("  TESTES DE VELOCIDADE CONCLUÍDOS COM SUCESSO!");
+        System.out.println("==================================================");
+    }
+}
+
