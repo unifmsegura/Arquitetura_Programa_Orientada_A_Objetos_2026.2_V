@@ -8,6 +8,37 @@ package com.mycompany.a07e07;
  *
  * @author unifmsegura
  */
-public class Login {
-    
+class Login {
+    private String usuario;
+    private String senha;
+
+    public Login(String usuario, String senha) {
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public boolean logar(String user, String password) throws LoginInvalidoException {
+        if (this.usuario.equals(user) && this.senha.equals(password)) {
+            System.out.println("Login realizado com sucesso! Bem-vindo, " + user + "!");
+            return true;
+        } else {
+            throw new LoginInvalidoException("Usuário ou senha incorretos! Acesso negado.");
+        }
+    }
 }
