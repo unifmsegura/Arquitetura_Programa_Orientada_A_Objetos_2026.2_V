@@ -11,7 +11,8 @@ package com.mycompany.a07e01;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ExcecaoRetomadaExercicio {
+
+public class main { 
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,25 +23,24 @@ public class ExcecaoRetomadaExercicio {
         System.out.println("  EXERCÍCIO 01 - AULA 07: COMPORTAMENTO DE RETOMADA");
         System.out.println("==================================================");
 
-        // Laço 'while' que repete até que nenhuma exceção seja lançada
         while (!entradaValida) {
             try {
                 System.out.print("\nDigite um número inteiro válido: ");
-                
                 numero = scanner.nextInt();
                 
                 if (numero < 0) {
                     throw new IllegalArgumentException("Número não pode ser negativo!");
                 }
 
-                // Se executado sem exceções, encerra o laço
+
                 entradaValida = true;
                 
             } catch (InputMismatchException e) {
                 System.out.println("Erro: Entrada inválida! Digite apenas números inteiros.");
-                scanner.nextLine(); // Limpa o buffer do Scanner
+                scanner.nextLine(); 
             } catch (IllegalArgumentException e) {
                 System.out.println("Erro: " + e.getMessage());
+                scanner.nextLine(); 
             }
         }
 
