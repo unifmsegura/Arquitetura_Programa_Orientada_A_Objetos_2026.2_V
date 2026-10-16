@@ -8,28 +8,25 @@ package Controller;
  *
  * @author unifmsegura
  */
-public class Controller {
-    private Janela janela;
 
-    public Controller(Janela janela) {
-        this.janela = janela;
+import Model.Pessoa;
+import java.util.ArrayList;
+
+public class Controller {
+    // A lista fica protegida dentro do Controller
+    private ArrayList<Pessoa> listaPessoas = new ArrayList<>();
+
+    public void salvarPessoa(Pessoa p) {
+        listaPessoas.add(p);
     }
-    
-    public void cadastrar() {
-        String nome = janela.getTxtNome().getText();
-        String sobrenome = janela.getTxtSobrenome().getText();
-        String idade = janela.getTxtIdade().getText();
-        String cpf = janela.getTxtCpf().getText();
-        boolean genero;
-        
-        if( janela.getRbtnFeminino().isSelected() ){
-            genero = true;
-        } else {
-            genero = false;
+
+    public Pessoa buscarPorCpf(String cpf) {
+        for (Pessoa p : listaPessoas) {
+            if (p.getCpf().equalsIgnoreCase(cpf)) {
+                return p;
+            }
         }
-        
-        Pessoa pessoa = new Pessoa(nome, sobrenome, cpf, idade, genero);
-        
-        System.out.println(nome);
+        return null; // Não encontrou
     }
 }
+
