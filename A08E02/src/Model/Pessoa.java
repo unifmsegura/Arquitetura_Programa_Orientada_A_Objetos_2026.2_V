@@ -9,49 +9,25 @@ package Model;
  * @author unifmsegura
  */
 public class Pessoa {
-    String nome, sobrenome, idade;
-    int idade;
-    boolean genero;
+    private String nome;
+    private String sobrenome;
+    private int idade;
+    private String cpf;
+    private String sexo;
 
-    public Pessoa(String nome, String sobrenome, String idade, boolean genero) {
+    public Pessoa(String nome, String sobrenome, int idade, String cpf, String sexo) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.idade = idade;
-        this.genero = genero;
+        this.cpf = cpf;
+        this.sexo = sexo;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getCpf() { return cpf; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    @Override
+    public String toString() {
+        return String.format("Nome: %s %s\nIdade: %d\nCPF: %s\nSexo: %s\n", 
+                nome, sobrenome, idade, cpf, sexo);
     }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getIdade() {
-        return idade;
-    }
-
-    public void setIdade(String idade) {
-        this.idade = idade;
-    }
-
-    public boolean isGenero() {
-        return genero;
-    }
-
-    public void setGenero(boolean genero) {
-        this.genero = genero;
-    }
-    
-    
-    
 }
