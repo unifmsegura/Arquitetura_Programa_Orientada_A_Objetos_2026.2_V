@@ -1,0 +1,5 @@
+com\mycompany\fabricaformas\Circulo.class
+com\mycompany\fabricaformas\Retangulo.class
+com\mycompany\fabricaformas\SimpleFactory.class
+com\mycompany\fabricaformas\Forma.class
+com\mycompany\fabricaformas\FabricaFormas.class
